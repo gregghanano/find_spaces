@@ -1,0 +1,50 @@
+<html>
+<head>
+	<title></title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script type='text/javascript' src='./script.js'></script>
+	<style>
+		.mistake{
+			/*display:hidden;*/
+			/*color:red;*/
+			background-color:red;
+		}
+	</style>
+</head>
+<body>
+	<script>
+		$(document).ready(function(){
+			var answer = {};
+			$('#form').submit(function(event){
+				// console.log(event);
+				event.preventDefault();
+				var text = $('.text').val();
+				answer = findSpaces(text);
+				console.log(answer);
+				$('#text-area').html(answer.answer);
+			});
+			 $('#new').click(function(){
+			 	$('#original').html(answer.original);
+			 });
+			 $('#mistakes').click(function(){
+			 	console.log(answer.mistakeLog);
+			 	$('#showMistakes').append('Mistake counter = ' + answer.numberOfMistakes + "<br>");
+			 	for(var i = 0; i < answer.mistakeLog.length; i++){
+			 		$('#showMistakes').append(answer.mistakeLog[i] + "<br>");
+			 	}
+			 });
+			 console.log(answer);
+		});
+		//hello.  im forrest. forrest gump.  you have nice shoes.
+	</script>
+	<form id='form' action='./script.js' method='post'>
+		<input class='text' type='text'>
+		<input type='submit'>
+	</form>
+	<button id='new'>show original</button> <button id='mistakes'>show mistakes</button>
+	<div id='text-area'></div>
+	<div id='original'></div>
+	<div id='showMistakes'></div>
+
+</body>
+</html>
